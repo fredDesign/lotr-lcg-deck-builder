@@ -10,7 +10,7 @@ var CardList = React.createClass({
 	render() {
 		return (
 			<div>
-				{this.props.cards.map(card => (<Card card={card} key={card.id} />))}
+				{this.props.cards.slice(0,12).map(card => (<Card card={card} key={card.id} />))}
 			</div>
 		);
 	}
