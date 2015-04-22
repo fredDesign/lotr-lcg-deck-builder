@@ -33,7 +33,7 @@ function parseResponse(propertyName) {
 
 function cleanUpHeroCard(card) {
 	return {
-		name: card.name,
+		name: _.unescape(card.name),
 		id: card.id,
 		unique:
 			card.unique === 'Yes' ? true :
