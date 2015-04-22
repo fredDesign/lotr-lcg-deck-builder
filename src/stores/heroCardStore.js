@@ -4,7 +4,25 @@ var request = require('superagent');
 module.exports = Reflux.createStore({
 	init() {
 		this.cards = [];
-		request.get('/_/hero.json')
+		this.retrieveCardData();
+	},
+
+	getAllState() {
+		return this.cards;
+	},
+
+	getDefaultData() {
+		return this.getAllState();
+	},
+
+	updateCards(cards) {
+		this.cards = cards;
+		this.trigger(this.getAllState());
+	},
+
+	retrieveCardData() {
+		request
+			.get('/_/hero.json')
 			.end((err, res) => {
 				if (err) {
 					console.error(err);
@@ -12,14 +30,5 @@ module.exports = Reflux.createStore({
 					this.updateCards(res.body);
 				}
 			});
-	},
-
-	getDefaultData() {
-		return this.cards;
-	},
-
-	updateCards(cards) {
-		this.cards = cards;
-		this.trigger(this.cards);
 	}
 });
