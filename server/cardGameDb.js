@@ -1,3 +1,4 @@
+var he = require('he');
 var rp = require('request-promise');
 var vm = require('vm');
 var _ = require('lodash');
@@ -33,7 +34,7 @@ function parseResponse(propertyName) {
 
 function cleanUpHeroCard(card) {
 	return {
-		name: _.unescape(card.name),
+		name: he.decode(card.name),
 		id: card.id,
 		unique:
 			card.unique === 'Yes' ? true :
