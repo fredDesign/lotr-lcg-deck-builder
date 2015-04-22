@@ -3,6 +3,8 @@ var React = require('react');
 
 var actions = require('../actions');
 
+require('./HeroCardFilters.less');
+
 var HeroCardFilters = React.createClass({
 	propTypes: {
 		filters: React.PropTypes.instanceOf(require('../models/HeroCardFilters')).isRequired
@@ -22,8 +24,8 @@ var HeroCardFilters = React.createClass({
 			<div>
 				<Bootstrap.Input type='text' addonBefore={searchIcon} value={this.props.filters.searchText} onChange={this.handleSearch}></Bootstrap.Input>
 				{['Leadership', 'Tactics', 'Spirit', 'Lore'].map(sphere => (
-					<Bootstrap.Button active={this.props.filters.spheres[sphere]} onClick={this.handleSphereClick.bind(this, sphere)}>
-						{sphere}
+					<Bootstrap.Button className='sphere-filter' active={this.props.filters.spheres[sphere]} onClick={this.handleSphereClick.bind(this, sphere)}>
+						<img src={`/images/spheres/${sphere}.png`} alt={sphere} title={sphere} />
 					</Bootstrap.Button>
 				))}
 			</div>
